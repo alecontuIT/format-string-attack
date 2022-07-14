@@ -19,11 +19,12 @@ def stringToHex(stringValue):
 
 # Take as input an hexadecimal value and transfor it into a little endian format
 #
-# Problem if the exadecimal start with 0
 #
 def littleEndian(hexValue):
     littleEndianValue = ''
     try:
+        if(len(hexValue)==7):
+            hexValue = '0'+str(hexValue)
         for i in range(7,-1,-2):
             littleEndianValue = littleEndianValue+'\\x'+str(hexValue[i-1])+str(hexValue[i])
         return littleEndianValue
@@ -72,7 +73,7 @@ def computeFormatString(targetAddress, toWriteAddress, displacement):
 def main():
     numberOfArguments = len(sys.argv)
     if (numberOfArguments != 4):
-        print("\n ERROR: you must write the right number of parameters! \n")
+        print("\n ERROR: You must write the right number of parameters! \n")
         print(" You must write the Target address, the toWrite Address and finally the displacement on the stack")
         print("\n Example: python formatString.py bfff6c4d 4faa3da2 3 \n")
     else:
@@ -88,7 +89,7 @@ def main():
             print("\n ERROR: The displacement on the stack must be a numeric value! \n")
             print(" You must write the Target address, the toWrite Address and finally the displacement on the stack")
             print("\n Example: python formatString.py bfff6c4d 4faa3da2 3 \n")
-            print(Exception)
+            #print(Exception)
 
 
 
